@@ -24,7 +24,6 @@ namespace CmsShopingCart
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             }
