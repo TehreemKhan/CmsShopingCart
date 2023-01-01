@@ -32,7 +32,7 @@
             @Html.DisplayNameFor(Model => Model.Content)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(Model => Model.Content)
+            @Html.Raw(Model.Content)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(Model => Model.Sorting)
