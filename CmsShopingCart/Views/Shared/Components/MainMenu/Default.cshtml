@@ -1,0 +1,8 @@
+﻿@model IEnumerable<CmsShopingCart.Models.Page>
+@foreach (var item in Model) {
+    <li class="nav-link">
+        <a class="nav-link text-dark" asp-area="" asp-controller="pages" asp-action="Page" asp-route-slug="@item.Slug">
+            @item.Title
+        </a>
+    </li>
+}
