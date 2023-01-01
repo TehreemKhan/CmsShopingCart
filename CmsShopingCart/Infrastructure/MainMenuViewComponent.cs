@@ -11,9 +11,9 @@ namespace CmsShopingCart.Infrastructure
     public class MainMenuViewComponent : ViewComponent
     {
         private readonly CmsShopingCartContext context;
-        public MainMenuViewComponent(CmsShopingCartContext context)
+        public MainMenuViewComponent(CmsShopingCartContext _context)
         {
-            this.context = context;
+            this.context = _context;
 
         }
         public async Task<IViewComponentResult> InvokeAsync() {

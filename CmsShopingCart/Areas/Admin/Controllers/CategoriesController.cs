@@ -13,9 +13,9 @@ namespace CmsShopingCart.Areas.Admin.Controllers
     public class CategoriesController : Controller
     {
         private readonly CmsShopingCartContext context;
-        public CategoriesController(CmsShopingCartContext context)
+        public CategoriesController(CmsShopingCartContext _context)
         {
-            this.context = context;
+            this.context = _context;
         }
         //GET /admin/categories
         public async Task<IActionResult> Index()

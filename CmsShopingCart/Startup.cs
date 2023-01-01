@@ -24,6 +24,12 @@ namespace CmsShopingCart
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //enable session
+            services.AddMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromDays(2);
+            });
+
             services.AddControllersWithViews();
             services.AddDbContext<CmsShopingCartContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CmsShopingCartContext")));
         }
@@ -42,6 +48,8 @@ namespace CmsShopingCart
             app.UseStaticFiles();
 
             app.UseRouting();
+            //enable session
+            app.UseSession();
 
             app.UseAuthorization();
 
