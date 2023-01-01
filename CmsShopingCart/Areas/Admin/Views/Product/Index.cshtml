@@ -26,10 +26,11 @@
             {
                 <tr id="id_@item.Id" class="@item.Slug">
                     <td>@item.Name</td>
-                    <td>@item.Price</td>
-                    <td>@item.Category</td>
-                    <td>@item.Image</td>
+                    <td>@item.Price.ToString("C2")</td>
+                    <td>@item.Category.Name</td>
+                    <td> <img src="~/media/products/@item.Image" width="50" alt="" /></td>
                     <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                         <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">|Delete</a>
                     </td>

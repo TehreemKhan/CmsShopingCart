@@ -1,12 +1,12 @@
-﻿@model CmsShopingCart.Models.Page
+﻿@model CmsShopingCart.Models.Product
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Pages Details";
+    ViewData["Title"] = "Product Details";
 }
 
-<h2>Pages Details</h2>
+<h2>Product Details</h2>
 
 <div
     <dl class="row">
@@ -17,10 +17,10 @@
             @Html.DisplayFor(Model => Model.Id)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(Model => Model.Title)
+            @Html.DisplayNameFor(Model => Model.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(Model => Model.Title)
+            @Html.DisplayFor(Model => Model.Name)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(Model => Model.Slug)
@@ -29,16 +29,28 @@
             @Html.DisplayFor(Model => Model.Slug)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(Model => Model.Content)
+            @Html.DisplayNameFor(Model => Model.Description)
         </dt>
         <dd class="col-sm-10">
-            @Html.Raw(Model.Content)
+            @Html.Raw(Model.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(Model => Model.Sorting)
+            @Html.DisplayNameFor(Model => Model.Price)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(Model => Model.Sorting)
+            @Model.Price.ToString("C2")
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.CategoryId)
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Category.Name
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Image)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/media/products/@Model.Image" width="200" alt=""/>
         </dd>
     </dl>  
 </div>
