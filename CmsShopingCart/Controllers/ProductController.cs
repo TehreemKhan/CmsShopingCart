@@ -35,7 +35,7 @@ namespace CmsShopingCart.Controllers
         {
             Category category = await context.Categories.Where(x => x.Slug == categorySlug).FirstOrDefaultAsync();
             if (category == null) RedirectToAction("Index");
-            int pageSize = 6;
+            int pageSize = 3;
             var products = context.Products.OrderByDescending(x => x.Id)
                                             .Where(x => x.CategoryId == category.Id)
                                             .Skip((p - 1) * pageSize)
@@ -44,6 +44,7 @@ namespace CmsShopingCart.Controllers
             ViewBag.PageRange = pageSize;
             ViewBag.TotalPages = (int)Math.Ceiling((decimal)context.Products.Where(x => x.CategoryId == category.Id).Count() / pageSize);
             ViewBag.CategoryName = category.Name;
+            ViewBag.CategorySlug = categorySlug;
             return View(await products.ToListAsync());
         }
     }
