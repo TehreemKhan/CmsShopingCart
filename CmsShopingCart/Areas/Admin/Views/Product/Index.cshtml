@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CmsShopingCart.Models.Product>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Product";
+}
+
+<h2>Product</h2>
+<p>
+    <a asp-action="Create">Create Product</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr id="id_@item.Id" class="@item.Slug">
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.Category</td>
+                    <td>@item.Image</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">|Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<div class="d-flex w-100 justify-content-center">
+    <Pagination page-count="@ViewBag.TotalPages" page-target="/admin/product" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></Pagination>
+</div>
+
