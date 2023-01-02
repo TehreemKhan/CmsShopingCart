@@ -9,6 +9,7 @@
         @foreach (var item in Model)
         {
         <div class="col-4">
+            <div class="ajaxbg"></div>
             <img src="~/media/products/@item.Image" width="50" alt="" />
             <h4>@item.Name</h4>
             <div>
@@ -18,7 +19,7 @@
                 @item.Price.ToString("C2")
             </p>
             <p>
-                <a asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id" class="btn btn-primary">Add to cart</a>
+                <a asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id" class="btn btn-primary" data-id="@item.Id">Add to cart</a>
             </p>
         </div>
         }
