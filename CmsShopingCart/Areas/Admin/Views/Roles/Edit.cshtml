@@ -13,7 +13,6 @@
             <input type="hidden" name="RoleName" value="@Model.Role.Name" />
             <div class="row">
                 <div class="col-6">
-
                     <h2>Add users to <span class="badge badge-primary">@Model.Role.Name</span> role</h2>
                     <table class="table table-bordered" >
                         @if (Model.NonMembers.Count() == 0) {
@@ -43,7 +42,7 @@
                         }
                         else
                         {
-                            foreach (AppUser user in Model.NonMembers)
+                            foreach (AppUser user in Model.Members)
                             {
                                 <tr>
                                     <td>@user.UserName</td>
