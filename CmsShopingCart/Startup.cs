@@ -1,6 +1,8 @@
 using CmsShopingCart.Infrastructure;
+using CmsShopingCart.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +34,9 @@ namespace CmsShopingCart
 
             services.AddControllersWithViews();
             services.AddDbContext<CmsShopingCartContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CmsShopingCartContext")));
+            services.AddIdentity<AppUser, IdentityRole>()
+                    .AddEntityFrameworkStores<CmsShopingCartContext>()
+                    .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +55,8 @@ namespace CmsShopingCart
             app.UseRouting();
             //enable session
             app.UseSession();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

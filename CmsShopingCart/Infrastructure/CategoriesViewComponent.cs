@@ -11,9 +11,9 @@ namespace CmsShopingCart.Infrastructure
     public class CategoriesViewComponent : ViewComponent
     {
         private readonly CmsShopingCartContext context;
-        public CategoriesViewComponent(CmsShopingCartContext context)
+        public CategoriesViewComponent(CmsShopingCartContext _context)
         {
-            this.context = context;
+            this.context = _context;
 
         }
         public async Task<IViewComponentResult> InvokeAsync() {
