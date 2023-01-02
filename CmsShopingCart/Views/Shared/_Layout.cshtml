@@ -22,7 +22,7 @@
                         {
                             <li class="nav-item">
                                 <a asp-controller="Account" asp-action="Edit" class="btn btn-primary">
-                                   My Account
+                                    My Account
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -31,6 +31,15 @@
                                     @User.Identity.Name, Logout
                                 </a>
                             </li>
+                            @if (User.IsInRole("admin") || User.IsInRole("editor"))
+                            {
+
+                                <li class="nav-item ml-1">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="Index" class="btn btn-success">
+                                        Admin Area
+                                    </a>
+                                </li>
+                            }
                         }
                         else
                         {

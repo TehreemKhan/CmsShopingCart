@@ -1,5 +1,6 @@
 ﻿using CmsShopingCart.Infrastructure;
 using CmsShopingCart.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace CmsShopingCart.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin, editor")]
     [Area("Admin")]
     public class PagesController : Controller
     {
