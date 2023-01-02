@@ -34,14 +34,14 @@ namespace CmsShopingCart.Models
                         Title = "Service",
                         Slug = "services",
                         Content = "services page",
-                        Sorting = 3
+                        Sorting = 100
                     },
                      new Page
                      {
                          Title = "Contact",
                          Slug = "contact",
                          Content = "contact page",
-                         Sorting = 4
+                         Sorting = 100
                      }
                     );
 
