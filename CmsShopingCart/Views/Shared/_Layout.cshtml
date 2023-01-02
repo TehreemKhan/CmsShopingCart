@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CmsShopingCart</title>
+    <title>@ViewData["Title"] - Wallmart</title>
     <link href="~/css/cosmo.bootswatch.min.css" rel="stylesheet" />
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <!--Bootstrap icon-->
@@ -12,59 +12,13 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Wallmart</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1 justify-content-end">
-                        @if (User?.Identity?.IsAuthenticated ?? false)
-                        {
-                            <li class="nav-item">
-                                <a asp-controller="Account" asp-action="Edit" class="btn btn-primary">
-                                    My Account
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Account" asp-action="Logout" class="btn btn-danger ml-1">
-                                    Hi,
-                                    @User.Identity.Name, Logout
-                                </a>
-                            </li>
-                            @if (User.IsInRole("admin") || User.IsInRole("editor"))
-                            {
-
-                                <li class="nav-item ml-1">
-                                    <a asp-area="Admin" asp-controller="Pages" asp-action="Index" class="btn btn-success">
-                                        Admin Area
-                                    </a>
-                                </li>
-                            }
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a asp-controller="Account" asp-action="Login" class="btn btn-success">Login</a>
-                            </li>
-                            <li class="nav-item ml-1">
-                                <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register</a>
-                            </li>
-                        }
-
-                    </ul>
-                    <ul class="navbar-nav flex-grow-1">
-                        @await Component.InvokeAsync("MainMenu")
-                    </ul>
-                </div>
-            </div>
-        </nav>
+      <partial name="_Navbar"/>
     </header>
+   
     <div class="container">
+       
         <main role="main" class="pb-3">
-            <partial name="_NotificationPartial"/>
+            <partial name="_NotificationPartial" />
             <div class="row">
                 <div class="col-3">
                     @await Component.InvokeAsync("Categories")
@@ -73,15 +27,16 @@
                     </div>
                 </div>
                 <div class="col">
+                    <partial name="_Slider" />
                     @RenderBody()
                 </div>
-             </div>           
+            </div>
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - CmsShopingCart - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - Wallmart - &copy; All right reserved by Asia Khan<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
