@@ -1,35 +1,30 @@
-﻿@model CmsShopingCart.Models.User
+﻿@model CmsShopingCart.Models.Login
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Login";
 }
-<h2>Register</h2>
+<h2>Login</h2>
 
 <hr />
 <div class="row">
     <div class="col-md-10">
-        <form asp-action="Register" method="post">
+        <form asp-action="Login" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label">Username</label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="RetrnUrl"/>
 
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <textarea asp-for="Email" class="form-control"></textarea>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <textarea asp-for="Password" class="form-control"></textarea>
+                <input asp-for="Password" class="form-control"/>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-primary" />
+                <input type="submit" value="Login" class="btn btn-primary" />
             </div>
         </form>
     </div>
