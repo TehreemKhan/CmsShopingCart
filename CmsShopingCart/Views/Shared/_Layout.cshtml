@@ -29,6 +29,9 @@
             <div class="row">
                 <div class="col-3">
                     @await Component.InvokeAsync("Categories")
+                    <div class="smallcart bg-warning mt-3 p-3 text-white">
+                        @await Component.InvokeAsync("SmallCart")
+                    </div>
                 </div>
                 <div class="col">
                     @RenderBody()
