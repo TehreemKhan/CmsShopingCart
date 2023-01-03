@@ -12,7 +12,7 @@
             <img src="~/media/products/@item.Image" width="200" alt="" />
             <h4>@item.Name</h4>
             <div>
-                @Html.Raw(item.Description)
+               @* @Html.Raw(item.Description.Substring(20))*@
             </div>
             <p>
                 @item.Price.ToString("C2")
