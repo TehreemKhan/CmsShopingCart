@@ -1,4 +1,6 @@
 ﻿using CmsShopingCart.Models;
+using CmsShopingCart.Services.Models;
+using CmsShopingCart.Services.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,13 +17,16 @@ namespace CmsShopingCart.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IPasswordHasher<AppUser> passwordHasher;
+        private readonly IEmailService emailService;
         public AccountController(UserManager<AppUser> _userManager,
                                 SignInManager<AppUser> _signInManager,
-                                IPasswordHasher<AppUser> _passwordHasher)
+                                IPasswordHasher<AppUser> _passwordHasher,
+                                IEmailService _emailService)
         {
             this.userManager = _userManager;
             this.signInManager = _signInManager;
             this.passwordHasher = _passwordHasher;
+            this.emailService = _emailService;
         }
         //GET /account/register
         [AllowAnonymous]
@@ -45,6 +50,9 @@ namespace CmsShopingCart.Controllers
                 IdentityResult result = await userManager.CreateAsync(appUser, user.Password);
                 if (result.Succeeded)
                 {
+                    var message = new Message(new string[] { user.Email }, "Register Account", "Register Account Mail");
+                    emailService.SendMail(message);
+                    TempData["Success"] = "Account created check you mail!";
                     return RedirectToAction("Login");
                 }
                 else {
@@ -120,6 +128,37 @@ namespace CmsShopingCart.Controllers
                 }
             }
             return View();
+        }
+        //Get /account/forgotPassword
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordModel forgotPasswordModel)
+        {
+            return View(forgotPasswordModel);
+        }
+
+        [AllowAnonymous]
+        public IActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> TestEmail()
+        {
+            var message = new Message(new string[] { "asiakhan2603@gmail.com" }, "Confirmation email link", "test ing user");
+            emailService.SendMail(message);
+            return Content("sent");
         }
     }
 }

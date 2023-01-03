@@ -1,5 +1,7 @@
 using CmsShopingCart.Infrastructure;
 using CmsShopingCart.Models;
+using CmsShopingCart.Services.Models;
+using CmsShopingCart.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -31,6 +33,14 @@ namespace CmsShopingCart
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromDays(2);
             });
+
+            //email service
+            var emailConfig = Configuration
+                              .GetSection("EmailConfiguration")
+                              .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+
+            services.AddScoped<IEmailService, EmailService>();
 
             services.AddControllersWithViews();
             services.AddDbContext<CmsShopingCartContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CmsShopingCartContext")));

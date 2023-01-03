@@ -20,4 +20,8 @@
     <Folder Include="wwwroot\media\products\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CmsShopingCart.Services\CmsShopingCart.Services.csproj" />
+  </ItemGroup>
+
 </Project>
