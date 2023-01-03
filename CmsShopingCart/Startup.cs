@@ -44,6 +44,7 @@ namespace CmsShopingCart
 
             services.AddControllersWithViews();
             services.AddDbContext<CmsShopingCartContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CmsShopingCartContext")));
+
             services.AddIdentity<AppUser, IdentityRole>()
                     .AddEntityFrameworkStores<CmsShopingCartContext>()
                     .AddDefaultTokenProviders();
