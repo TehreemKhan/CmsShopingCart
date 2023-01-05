@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+}
+<!-- //header -->
+<header class="py-sm-3 pt-3 pb-2" id="home">
+    <div class="container">
+        <!-- nav -->
+        <div class="top-w3pvt d-flex">
+            <div id="logo">
+                <h1> <a  href="/"><span class="log-w3pvt">B</span>aggage</a> <label class="sub-des">Online Store</label></h1>
+            </div>
+            <div class="forms ml-auto">
+                @if (User?.Identity?.IsAuthenticated ?? false)
+                {
+                        <a asp-controller="Account" asp-action="Edit" class="btn"><span class="fa fa-user-circle-o"></span> My Account</a>
+                        @if (User.IsInRole("admin") || User.IsInRole("editor"))
+                        {
+                            <a asp-area="Admin" asp-controller="Pages" asp-action="Index" class="btn btn-success">
+                                <i class="bi bi-people"></i> Switch Account
+                            </a>
+                        }
+
+                        <a asp-controller="Account" asp-action="Logout" class="btn ml-1">
+                            Hi,
+                            @User.Identity.Name, Logout
+                        </a>
+                }
+                else
+                {
+
+                    <a asp-controller="Account" asp-action="Login" class="btn"><span class="fa fa-user-circle-o"></span> Sign In</a>
+                    <a asp-controller="Account" asp-action="Register" class="btn"><span class="fa fa-pencil-square-o"></span> Sign Up</a>
+
+                }
+            </div>
+        </div>
+        <div class="nav-top-wthree">
+            <nav>
+                <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
+                <input type="checkbox" id="drop" />
+                <ul class="menu">
+                    @await Component.InvokeAsync("MainMenu")
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <li>
+                            <!-- First Tier Drop Down -->
+                            <label for="drop-2" class="toggle">
+                                Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </label>
+                            <a href="#">Setting <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                            <input type="checkbox" id="drop-2" />
+                            <ul>
+                                <li><a  asp-controller="Account" asp-action="Edit" class="drop-text">My Account</a></li>
+                                <li><a asp-controller="Account" asp-action="Logout" class="drop-text">Logout</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            <!-- //nav -->
+            <div class="search-form ml-auto">
+                <div class="form-w3layouts-grid">
+                    <form action="#" method="post" class="newsletter">
+                        <input class="search" type="search" placeholder="Search here..." required="">
+                        <button class="form-control btn" value=""><span class="fa fa-search"></span></button>
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</header>
+<!-- //header -->

@@ -51,7 +51,7 @@ namespace CmsShopingCart.Controllers
                 if (result.Succeeded)
                 {
                     var message = new Message(new string[] { user.Email }, "Register Account", "Register Account Mail");
-                    emailService.SendMail(message);
+                  //  emailService.SendMail(message);
                     TempData["Success"] = "Account created check you mail!";
                     return RedirectToAction("Login");
                 }

@@ -1,38 +1,71 @@
 ﻿@model CmsShopingCart.Models.Login
 @{
     ViewData["Title"] = "Login";
+    Layout = "_MyLayout";
 }
-<h2>Login</h2>
-
-<hr />
-<div class="row">
-    <div class="col-md-10">
-        <form asp-action="Login" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="RetrnUrl"/>
-
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+<!--/login -->
+<section class="banner-bottom">
+    <div class="container">
+        <div class="content-grid">
+            <div class="text-center icon">
+                <span class="fa fa-unlock-alt"></span>
             </div>
+            <div class="content-bottom">
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="RetrnUrl" />
+                    <div class="field-group">
+                        <div class="content-input-field">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control"  placeholder="User Name" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
 
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control"/>
-                <span asp-validation-for="Password" class="text-danger"></span>
+                            @*<input name="text1" id="text1" type="text" value="" placeholder="User Name" required="">*@
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <div class="content-input-field">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="content-input-field">
+                        <button type="submit" class="btn">Sign In</button>
+                    </div>
+                    <ul class="list-login">
+                        <li class="switch-slide">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                                keep Logged in
+                            </label>
+                        </li>
+                        <li>
+                            <a asp-action="ForgotPassword" class="text-right">Forgot password?</a>
+                        </li>
+                        <li class="clearfix"></li>
+                    </ul>
+                    <ul class="list-login-bottom">
+                        <li class="">
+                            <a href="register.html" class="">Don't have an Account?</a>
+                        </li>
+                        <li class="">
+                            <a href="#" class="text-right">Need Help?</a>
+                        </li>
+                        <li class="clearfix"></li>
+                    </ul>
+                </form>
             </div>
-
-            <div class="form-group">
-            <a asp-action="ForgotPassword">Forgot Password</a>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+<!-- /login -->
+<!--/shipping-->
+<partial name="ThemeComponent/_Shipping" />
+<!--Footer-->
+<partial name="ThemeComponent/_Footer" />
+
 
 @section Scripts{
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }

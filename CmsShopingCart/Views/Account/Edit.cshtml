@@ -1,33 +1,47 @@
 ﻿@model CmsShopingCart.Models.UserEdit
 @{
     ViewData["Title"] = "Edit Account";
+    Layout = "_MyLayout";
 }
-<h2>Edit Account</h2>
-
-<hr />
-<div class="row">
-    <div class="col-md-10">
-        <form asp-action="Edit" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+<!--/login -->
+<section class="banner-bottom">
+    <div class="container">
+        <div class="content-grid">
+            <div class="text-center icon">
+                <span class="fa fa-user-circle-o"></span>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control"/>
-                <span asp-validation-for="Password" class="text-danger"></span>
+            <div class="content-bottom">
+                <h2 class="text-center">Edit Account</h2>
+                <hr />
+                <form asp-action="Edit" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="field-group">
+                        <div class="content-input-field">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                   
+                    <div class="content-input-field">
+                        <button type="submit" class="btn">Edit Profile</button>
+                    </div>
+                    
+                </form>
             </div>
-
-            <div class="form-group">
-                <input type="submit" value="Edit" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+<!-- /login -->
+<!--Footer-->
+<partial name="ThemeComponent/_Footer" />
+
 
 @section Scripts{
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }

@@ -1,39 +1,57 @@
 ﻿@model CmsShopingCart.Models.User
 @{
     ViewData["Title"] = "Register";
+    Layout = "_MyLayout";
 }
-<h2>Register</h2>
-
-<hr />
-<div class="row">
-    <div class="col-md-10">
-        <form asp-action="Register" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label">Username</label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
+<!--/register -->
+<section class="banner-bottom">
+    <div class="container">
+        <div class="content-grid">
+            <div class="text-center icon">
+                <span class="fa fa-user-circle-o"></span>
             </div>
+            <div class="content-bottom">
+                <form asp-action="Register" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="field-group">
+                        <div class="content-input-field">
+                            <label asp-for="UserName" class="control-label">Username</label>
+                            <input asp-for="UserName" class="form-control" placeholder="User Name"/>
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="field-group">
 
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="content-input-field">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" placeholder="User Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <div class="content-input-field">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="content-input-field">
+                        <button type="submit" class="btn">Sign Up</button>
+                    </div>
+                    <div class="list-login-bottom text-center mt-lg-5 mt-4">
+                        <a href="#" class="">By clicking Signup, I agree to your terms</a>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+<!-- /register -->
+<!--/shipping-->
+<partial name="ThemeComponent/_Shipping" />
+<!--Footer-->
+<partial name="ThemeComponent/_Footer" />
+
 
 @section Scripts{
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }

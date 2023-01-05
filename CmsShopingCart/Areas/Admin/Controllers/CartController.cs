@@ -39,7 +39,10 @@ namespace CmsShopingCart.Areas.Admin.Controllers
                 cartItem.Quantity += 1;
             }
             HttpContext.Session.SetJson("Cart",cart);
-            return RedirectToAction("Index");
+            if (HttpContext.Request.Headers["X-Requested-With"] != "XMLHttpRequest") {
+                return RedirectToAction("Index");
+            }
+            return ViewComponent("SmallCart");
         }
         //GET /cart/decrease/5
         public IActionResult Decrease(int id)

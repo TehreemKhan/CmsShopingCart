@@ -23,7 +23,8 @@ namespace CmsShopingCart.Controllers
         public async  Task<IActionResult> Page(string slug)
         {
             if (slug == null) {
-                return View(await context.Pages.Where(x => x.Slug == "home").FirstOrDefaultAsync());
+                return View("HomePage");
+             //   return View(await context.Pages.Where(x => x.Slug == "home").FirstOrDefaultAsync());
             }
             Page page = await context.Pages.Where(x => x.Slug == slug).FirstOrDefaultAsync();
             if (page == null) {
