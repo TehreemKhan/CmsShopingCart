@@ -52,7 +52,7 @@ namespace CmsShopingCart.Controllers
                 {
                     var message = new Message(new string[] { user.Email }, "Register Account", "Register Account Mail");
                   //  emailService.SendMail(message);
-                    TempData["Success"] = "Account created check you mail!";
+                    TempData["Success"] = "Account created check your mail!";
                     return RedirectToAction("Login");
                 }
                 else {
@@ -88,7 +88,7 @@ namespace CmsShopingCart.Controllers
                     Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(appUser, login.Password, false, false);
 
                     if (result.Succeeded) {
-                        return Redirect(login.RetrnUrl ?? "/");
+                        return Redirect(login.RetrnUrl ?? "/home");
                     }
                 }
                 ModelState.AddModelError("","Login failed  wrong credaintials");
@@ -123,7 +123,7 @@ namespace CmsShopingCart.Controllers
                 }
                 IdentityResult result = await userManager.UpdateAsync(appUser);
                 if (result.Succeeded) {
-                    TempData["Success"] = "your information ha been edited";
+                    TempData["Success"] = "Your information ha been edited";
                     return Redirect("/");
                 }
             }
@@ -201,13 +201,13 @@ namespace CmsShopingCart.Controllers
         }
         //
 
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> TestEmail()
-        {
-            var message = new Message(new string[] { "asiakhan2603@gmail.com" }, "Confirmation email link", "test ing user");
-            emailService.SendMail(message);
-            return Content("sent");
-        }
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> TestEmail()
+        //{
+        //    var message = new Message(new string[] { "asiakhan2603@gmail.com" }, "Confirmation email link", "test ing user");
+        //     emailService.SendMail(message);
+        //    return Content("sent");
+        //}
     }
 }

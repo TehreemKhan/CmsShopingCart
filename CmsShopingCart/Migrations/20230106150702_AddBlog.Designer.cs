@@ -4,14 +4,16 @@ using CmsShopingCart.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CmsShopingCart.Migrations
 {
     [DbContext(typeof(CmsShopingCartContext))]
-    partial class CmsShopingCartContextModelSnapshot : ModelSnapshot
+    [Migration("20230106150702_AddBlog")]
+    partial class AddBlog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

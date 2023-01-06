@@ -12,7 +12,7 @@
             <div class="forms ml-auto">
                 @if (User?.Identity?.IsAuthenticated ?? false)
                 {
-                        <a asp-controller="Account" asp-action="Edit" class="btn"><span class="fa fa-user-circle-o"></span> My Account</a>
+                        <a asp-controller="Account" asp-action="Edit" class="btn shop"><span class="fa fa-user-circle-o"></span> My Account</a>
                         @if (User.IsInRole("admin") || User.IsInRole("editor"))
                         {
                             <a asp-area="Admin" asp-controller="Pages" asp-action="Index" class="btn btn-success">
@@ -20,7 +20,7 @@
                             </a>
                         }
 
-                        <a asp-controller="Account" asp-action="Logout" class="btn ml-1">
+                        <a asp-controller="Account" asp-action="Logout" class="btn btn-primary ml-1">
                             Hi,
                             @User.Identity.Name, Logout
                         </a>
@@ -39,7 +39,13 @@
                 <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
                 <input type="checkbox" id="drop" />
                 <ul class="menu">
+
                     @await Component.InvokeAsync("MainMenu")
+                    <li>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">
+                            Blog
+                        </a>
+                    </li>
                     @if (User?.Identity?.IsAuthenticated ?? false)
                     {
                         <li>
@@ -50,7 +56,7 @@
                             <a href="#">Setting <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                             <input type="checkbox" id="drop-2" />
                             <ul>
-                                <li><a  asp-controller="Account" asp-action="Edit" class="drop-text">My Account</a></li>
+                                <li><a asp-controller="Account" asp-action="Edit" class="drop-text">My Account</a></li>
                                 <li><a asp-controller="Account" asp-action="Logout" class="drop-text">Logout</a></li>
                             </ul>
                         </li>

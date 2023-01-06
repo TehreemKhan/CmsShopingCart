@@ -1,0 +1,57 @@
+﻿@model CmsShopingCart.Models.Blog
+
+@{
+    ViewData["Title"] = "Blog Details";
+    Layout = "_ProductPageLayout ";
+}
+<!--/banner-bottom -->
+<section class="banner-bottom">
+    <div class="container py-md-5">
+        <!-- product right -->
+        <div class="left-ads-display wthree">
+            <div class="row">
+                <div class="desc1-left col-md-6">
+                    <img src="~/media/blogs/@Model.Image" alt=""  class="img-fluid" />
+                </div>
+                <div class="desc1-right col-md-6 pl-lg-3">
+                    <h3> @Html.DisplayFor(Model => Model.Title)</h3>
+                    <h5> <span></span><a asp-action="Index" class="btn shop">Back to List</a></h5>
+                    <div class="available mt-3">
+                       
+                        <span><a href="#">@Html.DisplayFor(Model => Model.Author) </a></span>
+                        @*<p>Lorem Ipsum has been the industry's standard since the 1500s. Praesent ullamcorper dui turpis.. </p>*@
+                    </div>
+                    <div class="share-desc mt-5">
+                        <div class="share text-left">
+                            <h4>Share Product :</h4>
+                            <div class="social-ficons mt-4">
+                                <ul>
+                                    <li><a href="#"><span class="fa fa-facebook"></span> Facebook</a></li>
+                                    <li><a href="#"><span class="fa fa-twitter"></span> Twitter</a></li>
+                                    <li><a href="#"><span class="fa fa-google"></span>Google</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row sub-para-w3pvt my-5">
+
+                <h3 class="shop-sing"> @Html.DisplayFor(Model => Model.Title)</h3>
+                <p> @Html.Raw(Model.Description)</p>
+                @*<p class="mt-3 italic-blue">Consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
+                <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>*@
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /banner-bottom -->
+
+
+
+
+
+

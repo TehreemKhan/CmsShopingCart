@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CmsShopingCart.Models.Blog>
+
+@{
+    ViewData["Title"] = "Blog";
+}
+
+<h2>Blog</h2>
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">Create  New Blog <i class="bi bi-plus-circle"></i> </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Image</th>
+            <th>Created Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr id="id_@item.Id" class="@item.Slug">
+                    <td>@item.Title</td>
+                    <td>@item.Author</td>
+                    <td> <img src="~/media/blogs/@item.Image" width="50" alt="" /></td>
+                    <td>@item.CreatedAt</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">|Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<div class="d-flex w-100 justify-content-center">
+    <Pagination page-count="@ViewBag.TotalPages" page-target="/admin/blog" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></Pagination>
+</div>
+

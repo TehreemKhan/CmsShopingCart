@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CmsShopingCart.Models.Blog>
+
+@{
+    ViewData["Title"] = "Blog";
+    Layout = "_ProductPageLayout ";
+}
+<!--/banner-bottom -->
+<section class="banner-bottom">
+    <div class="container">
+        <h3 class="title-wthree mb-lg-5 mb-4 text-center">Latest Blogs</h3>
+        <!--/row-->
+        <div class="row shop-wthree-info text-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 shop-info-grid text-center mt-4">
+                    <div class="product-shoe-info shoe">
+                        <div class="men-thumb-item">
+                            <img src="~/media/blogs/@item.Image" class="img-fluid" alt="">
+                        </div>
+                        <div class="item-info-product">
+                            <h4>
+                                <a href="single.html">@item.Title </a>
+                            </h4>
+
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money"><span class="line"></span>@item.Author</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary" data-id="@item.Id" addToCart>Read...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--//row-->
+      
+       
+        <nav aria-label="Page navigation example mt-5" class="d-flex w-100 justify-content-center">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#">Previous</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+<!-- /banner-bottom -->
+
+
+
+
+
+<div class="row">
+   
+    @if (ViewBag.TotalPages > 1)
+    {
+        <div class="d-flex w-100 justify-content-center">
+            <Pagination page-count="@ViewBag.TotalPages" page-target="/product" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></Pagination>
+        </div>
+    }
+</div>
+
+@section Scripts{
+    
+}
+
