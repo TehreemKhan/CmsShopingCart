@@ -31,7 +31,7 @@ namespace CmsShopingCart.Areas.Admin.Controllers
             int pageSize = 6;
             var products = context.Products.OrderByDescending(x => x.Id)
                                             .Include(x => x.Category)
-                                            .Skip((p-1)* pageSize)
+                                            .Skip((p-1) * pageSize)
                                             .Take(pageSize);
             ViewBag.PageNumber = p;
             ViewBag.PageRange = pageSize;

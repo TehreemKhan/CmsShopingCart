@@ -36,27 +36,12 @@
             }
         </div>
         <!--//row-->
-      
-       
-        <nav aria-label="Page navigation example mt-5" class="d-flex w-100 justify-content-center">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#">Previous</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
+        @if (ViewBag.TotalPages > 1)
+        {
+            <div class="d-flex w-100 justify-content-center">
+                <Pagination page-count="@ViewBag.TotalPages" page-target="/blog" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></Pagination>
+            </div>
+        }
     </div>
 </section>
 <!-- /banner-bottom -->
@@ -67,12 +52,7 @@
 
 <div class="row">
    
-    @if (ViewBag.TotalPages > 1)
-    {
-        <div class="d-flex w-100 justify-content-center">
-            <Pagination page-count="@ViewBag.TotalPages" page-target="/product" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></Pagination>
-        </div>
-    }
+   
 </div>
 
 @section Scripts{
