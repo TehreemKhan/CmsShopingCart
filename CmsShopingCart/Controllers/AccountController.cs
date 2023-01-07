@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace CmsShopingCart.Controllers
@@ -18,6 +20,15 @@ namespace CmsShopingCart.Controllers
         private readonly SignInManager<AppUser> signInManager;
         private readonly IPasswordHasher<AppUser> passwordHasher;
         private readonly IEmailService emailService;
+
+
+        //mailTrapEmailConfig
+        SmtpClient client = new SmtpClient("smtp.mailtrap.io", 2525)
+        {
+            Credentials = new NetworkCredential("", ""),
+            EnableSsl = false
+        };
+       
         public AccountController(UserManager<AppUser> _userManager,
                                 SignInManager<AppUser> _signInManager,
                                 IPasswordHasher<AppUser> _passwordHasher,
@@ -27,6 +38,7 @@ namespace CmsShopingCart.Controllers
             this.signInManager = _signInManager;
             this.passwordHasher = _passwordHasher;
             this.emailService = _emailService;
+           
         }
         //GET /account/register
         [AllowAnonymous]
@@ -50,8 +62,20 @@ namespace CmsShopingCart.Controllers
                 IdentityResult result = await userManager.CreateAsync(appUser, user.Password);
                 if (result.Succeeded)
                 {
-                    var message = new Message(new string[] { user.Email }, "Register Account", "Register Account Mail");
-                  //  emailService.SendMail(message);
+                    //  var message = new Message(new string[] { user.Email }, "Register Account", "Register Account Mail");
+                    //   emailService.SendMail(message);
+                    //mail trap
+                    try
+                    {
+                        client.Send("support@baggage.com",  user.Email , "Register Account", "Register Account Mail");
+                       // return Content("sent");
+                    }
+                    catch (SmtpException ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                      //  return Content(ex.ToString());
+                    }
+                    //mail trap
                     TempData["Success"] = "Account created check your mail!";
                     return RedirectToAction("Login");
                 }
@@ -151,8 +175,20 @@ namespace CmsShopingCart.Controllers
             var callback = Url.Action(nameof(ResetPassword), "Account", new { token, email = user.Email }, Request.Scheme);
           
          
-            var message = new Message(new string[] { user.Email }, "Reset password token", callback);
-            emailService.SendMail(message);
+           // var message = new Message(new string[] { user.Email }, "Reset password token", callback);
+          //  emailService.SendMail(message);
+            //mail trap
+            try
+            {
+                client.Send("asia@example.com", user.Email, "Reset password token", callback);
+                // return Content("sent");
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                //  return Content(ex.ToString());
+            }
+            //mail trap
             return RedirectToAction(nameof(ForgotPasswordConfirmation));
         }
 
@@ -202,12 +238,39 @@ namespace CmsShopingCart.Controllers
         //
 
         //[HttpGet]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> TestEmail()
-        //{
-        //    var message = new Message(new string[] { "asiakhan2603@gmail.com" }, "Confirmation email link", "test ing user");
-        //     emailService.SendMail(message);
-        //    return Content("sent");
-        //}
+        [AllowAnonymous]
+        public async Task<IActionResult> TestEmail()
+        {
+            var message = new Message(new string[] { "asiakhan2603@gmail.com" }, "Confirmation email link", "test ing user");
+            emailService.SendMail(message);
+            return Content("sent");
+        }
+
+        //[HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> TestMailTrapEmail()
+        {
+            //var message = new Message(new string[] { "asiakhan2603@gmail.com" }, "Confirmation email link", "test ing user");
+            //emailService.SendMail(message);
+            var client = new SmtpClient("smtp.mailtrap.io", 2525)
+            {
+                Credentials = new NetworkCredential("ac18e8b62d13ef", "525b131cd04c2e"),
+                EnableSsl = false
+            };
+            
+            try
+            {
+                client.Send("asia@example.com", "asiaKhan2603@gmail.com", "Hello world", "working");
+                return Content("sent");
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return Content(ex.ToString());
+            }
+            //  Console.WriteLine("Sent");
+            // Console.ReadLine();
+            return Content("sent");
+        }
     }
 }

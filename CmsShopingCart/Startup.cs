@@ -41,7 +41,7 @@ namespace CmsShopingCart
             services.AddSingleton(emailConfig);
 
             services.AddScoped<IEmailService, EmailService>();
-
+            
             services.AddControllersWithViews();
             services.AddDbContext<CmsShopingCartContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CmsShopingCartContext")));
 
